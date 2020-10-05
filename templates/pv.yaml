@@ -1,0 +1,14 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: {{ include "confluence-helm.fullname" . }}-volume
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 5Gi
+  storageClassName: confluence-helm-storage
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: {{ .Values.volume.mountpath }}
